@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
-
+import { checkValide } from "../utils/validate.js";
 const Login = () => {
   const [isSign, setisSign] = useState(true);
+
+  const email=useRef()
 
   const toggleSignInForm = () => {
     console.log("click");
     setisSign(!isSign);
+  };
+  const handleButtonclick = () => {
+    //  const res= ValidityState(Email, Password);
   };
   return (
     <div className="">
@@ -23,6 +28,7 @@ const Login = () => {
           {isSign ? "Sign in" : "Sign up"}
         </h1>
         <input
+          ref={email}
           type="text"
           placeholder="Email"
           className="p-4 my-4 w-full bg-gray-700"
@@ -42,11 +48,11 @@ const Login = () => {
         <button
           type="button"
           className="p-4 my-6 w-full bg-red-700 "
-          onClick={toggleSignInForm}
+          onClick={handleButtonclick}
         >
           {isSign ? "Sign in" : "Sign up"}
         </button>
-        <p className="text-sm text-center">
+        <p className="text-sm text-center" onClick={toggleSignInForm}>
           {isSign
             ? "New to NetFlix ? Sign Up Now"
             : "Already registered ? Sign in"}
